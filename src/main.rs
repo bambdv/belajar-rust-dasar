@@ -219,3 +219,100 @@ fn two_dimensional_array() {
     println!("{}", matrix[0][0]);
     println!("{}", matrix[0][1]);
 }
+
+const MINIMUM: i32 = 0;
+#[test]
+fn constant() {
+    const MAXIMUM: i32 = 100;
+    println!("{} {}", MAXIMUM, MINIMUM);
+}
+
+#[test]
+fn variable_scope() {
+    println!("{}", MINIMUM); // global_scope
+
+    let ibrohim = 0; // variable_scope
+
+    {
+        // inner_scope
+        println!("{}", ibrohim); // success
+        let _sairony = 1;
+    }
+    // println!("{}", sairony); // * error - outter_scope
+}
+
+#[test]
+fn stack_heap() {
+    // Manajement Memory ada 2 : stack dan heap
+    function_a();
+    function_b()
+}
+
+fn function_a() {
+    let a = 10;
+    let b = String::from("Ibrohim");
+    println!("{}, {}", a, b)
+}
+
+fn function_b() {
+    let a = 10;
+    let b = String::from("Sairony");
+    println!("{}, {}", a, b);
+}
+
+#[test]
+fn string_slice() {
+    // string_slice beda dengan string biasa
+    // kode type_data : &str
+    let name = "   Ibrohim Sairony    ";
+    let trim = name.trim();
+    println!("{}", name);
+    println!("{}", trim);
+
+    let mut _username = "ibrohim"; // fixed-size.  gk bisa diapa-apakan. selalu ada di memory.
+    _username = "Sairony"; // data "ibrohim" gk hilang. cuma nama variable diganti.
+    println!("{}", _username);
+
+    // number juga sama seperti string_slice : fixed-size
+    let mut _value = 10;
+    _value = 20 // ! aku baru tau perilaku seprti ini
+}
+
+#[test]
+fn string() {
+    let mut name = String::from("Ibrohim");
+    println!("{}", name);
+
+    name.push_str(" Sairony");
+    println!("{}", name);
+
+    let saad = name.replace("Ibrohim", "Saad");
+    println!("{}", saad);
+}
+
+#[test]
+fn data_copy() {
+    // untuk data di stack (fixed-size) implement copy, jadi variable / owner lama bisa diakses
+    let a = 10;
+    let b = a;
+    println!("{}, {}", a, b);
+}
+
+#[test]
+fn ownership_movement() {
+    // untuk data di heap (data-bisa-berkembang) itu bukan copy melainkan move jadi owner lama sudah hilang
+    let name1 = String::from("Ibrohim");
+    println!("{}", name1);
+
+    let name2 = name1; //ownership pindah ke name2
+    println!("{}", name2);
+    // println!("{}", name1); // ! error karena ownership sudah berpindah
+}
+
+#[test]
+fn clone() {
+    // solusi untuk copy data heap. bukan movement_ownership
+    let name1 = String::from("Ibrohim");
+    let name2 = name1.clone();
+    println!("{}, {}", name1, name2)
+}
