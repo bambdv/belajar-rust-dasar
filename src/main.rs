@@ -13,7 +13,7 @@ fn test_use() {
 }
 
 use model::*; // untuk mengambil semua member di modul, baik struct, type function dan lain-lain
-// use model::{User, test}; // atau bisa juga pilih sebaigian saja
+              // use model::{User, test}; // atau bisa juga pilih sebaigian saja
 #[test]
 fn test_module() {
     let user = User {
@@ -1112,7 +1112,7 @@ impl<T> Point<T> {
 fn test_generic_struct() {
     let integer = Point::<i32> { x: 20, y: 30 };
     let float = Point { x: 20.3, y: 101.0 }; // ! bisa juga gk perlu ::<>
-    // let float = Point::<f64> { x: 20.3, y: 101.0 };
+                                             // let float = Point::<f64> { x: 20.3, y: 101.0 };
     println!("{}, {}", integer.x, integer.y);
     println!("{}, {}", float.x, float.y);
 }
@@ -1158,7 +1158,11 @@ fn min<T>(value1: T, value2: T) -> T
 where
     T: PartialOrd,
 {
-    if value1 > value2 { value2 } else { value1 }
+    if value1 > value2 {
+        value2
+    } else {
+        value1
+    }
 }
 
 #[test]
